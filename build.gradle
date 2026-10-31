@@ -13,20 +13,21 @@ base {
 repositories {
     maven { url 'https://maven.fabricmc.net/' }
     maven { url 'https://maven.shedaniel.me/' }
+    maven { url 'https://maven.terraformersmc.com/releases/' } // Для Mod Menu
     mavenCentral()
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    
-    // ИСПОЛЬЗУЕМ MOJANG MAPPINGS
     mappings loom.officialMojangMappings()
-    
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
     
     // Cloth Config для меню
     modApi "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
+    
+    // Mod Menu для кнопки настроек
+    modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
 processResources {
