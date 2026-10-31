@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "autoez",
+  "version": "1.0.0",
+  "name": "AutoEZ",
+  "description": "Пишет ez при смерти игроков рядом",
+  "authors": ["Islam"],
+  "entrypoints": {
+    "client": [
+      "com.islamozroko.autoez.AutoEzMod"
+    ],
+    "modmenu": [
+      "com.islamozroko.autoez.AutoEzModMenu"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*",
+    "cloth-config": "*",
+    "modmenu": "*"
+  }
+}
