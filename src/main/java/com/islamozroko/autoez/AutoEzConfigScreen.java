@@ -32,7 +32,7 @@ public class AutoEzConfigScreen {
                 
         general.addEntry(entryBuilder.startStrList(Component.literal("Фразы"), config.phrases)
                 .setDefaultValue(new ArrayList<>())
-                .setTooltip(Component.literal("Одна из фраз выбирается случайно"))
+                .setTooltip(Component.literal("Добавь фразы. Используй %player% для вставки ника убитого."))
                 .setSaveConsumer(newValue -> config.phrases = newValue)
                 .build());
         
