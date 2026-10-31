@@ -22,21 +22,26 @@ public class AutoEzMod implements ClientModInitializer {
             if (client.player == null || client.level == null || !config.enabled) return;
 
             Set<UUID> currentAlive = new HashSet<>();
-            boolean someoneDied = false;
+            Player deadPlayer = null;
 
+            // Проходим ТОЛЬКО по игрокам
             for (Player player : client.level.players()) {
                 if (player != client.player && player.distanceTo(client.player) <= config.radius) {
                     if (player.isAlive()) {
                         currentAlive.add(player.getUUID());
                     } else if (alivePlayers.contains(player.getUUID())) {
-                        someoneDied = true;
+                        // Запоминаем, кто именно умер
+                        deadPlayer = player;
                     }
                 }
             }
 
-            if (someoneDied && !config.phrases.isEmpty()) {
+            // Если кто-то умер и у нас есть фразы
+            if (deadPlayer != null && !config.phrases.isEmpty()) {
                 String phrase = config.phrases.get(random.nextInt(config.phrases.size()));
-                client.player.connection.sendChat(phrase);
+                // Заменяем %player% на ник умершего
+                String message = phrase.replace("%player%", deadPlayer.getName().getString());
+                client.player.connection.sendChat(message);
             }
 
             alivePlayers.clear();
